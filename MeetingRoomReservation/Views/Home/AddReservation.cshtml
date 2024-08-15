@@ -1,0 +1,52 @@
+﻿@model ViewModel
+@{
+    ViewData["Title"] = "AddReservation";
+    Layout = "~/Views/Shared/_HeaderFooter.cshtml";
+}
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Dashboard</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/Home/Index">Home</a></li>
+                <li class="breadcrumb-item active">Schedule Meeting Room</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- End Page Title -->
+
+    <section class="section dashboard">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col">
+                    <h2>Schedule Meeting Room</h2>
+                </div>
+            </div>
+            <div class="reservation-container mt-4 p-4">
+                <form method="post" action="/Home/AddReservation">
+                    <input type="hidden" name="UserId" value="@ViewBag.UserId" />
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="startTime">Start Time</label>
+                            <input type="datetime-local" id="startTime" name="StartTime" class="form-control" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="endTime">End Time</label>
+                            <input type="datetime-local" id="endTime" name="EndTime" class="form-control" required>
+                        </div>
+                        <div class="col-md-4 d-flex align-items-end">
+                            <button type="submit" class="btn btn-primary w-100">Reserve</button>
+                        </div>
+                    </div>
+                </form>
+
+
+                @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+                {
+                    <div class="alert alert-danger mt-3">@ViewBag.ErrorMessage</div>
+                }
+            </div>
+        </div>
+    </section>
+</main>
